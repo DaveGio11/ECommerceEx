@@ -62,7 +62,7 @@ namespace ECommerceEx
             int index = row.RowIndex;
 
             // Ottiengo il nome del prodotto da rimuovere dalla riga selezionata
-            string nomeProdottoDaRimuovere = GridView1.Rows[index].Cells[0].Text; // Assumendo che il nome del prodotto sia nella prima cella della riga
+            string nomeProdottoDaRimuovere = GridView1.Rows[index].Cells[0].Text;
 
             // Controllo se la lista dei prodotti nel carrello è presente nella sessione
             if (Session["Carrello"] != null)
@@ -71,7 +71,15 @@ namespace ECommerceEx
                 List<Prodotto> prodottiNelCarrello = (List<Prodotto>)Session["Carrello"];
 
                 // Elimino il prodotto dalla lista in base al NomeProdotto
-                prodottiNelCarrello.RemoveAll(p => p.NomeProdotto == nomeProdottoDaRimuovere);
+
+                foreach (Prodotto prodotto in prodottiNelCarrello)
+                {
+                    if (prodotto.NomeProdotto == nomeProdottoDaRimuovere)
+                    {
+                        prodottiNelCarrello.Remove(prodotto);
+                        break; ;
+                    }
+                }
 
                 // Aggiorno la GridView e il totale dei prezzi
                 GridView1.DataSource = prodottiNelCarrello;
