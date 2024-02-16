@@ -13,14 +13,15 @@
     </style>
 
     <main>
+        <asp:Button ID="GoCarrello" CssClass="btn btn-warning my-3 fixed-bottom" runat="server" Text="Vai al Carrello" OnClick="GoCarrello_Click" />
         <div class="row">
             <asp:Repeater ID="RepeaterProdotti" runat="server">
                 <HeaderTemplate>
                     <div class="row">
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <div class="col-md-3">
-                        <div  class="card mb-4">
+                    <div class="col-md-3 my-3">
+                        <div  class="card">
                             <img id="Immagine" class="card-img-top" src='<%# Eval("ImmagineUrl") %>' alt="prodotto">
                             <div class="card-body">
                                 <h5 id="NomeProdotto" class="card-title text-black"><%# Eval("NomeProdotto") %></h5>
@@ -35,6 +36,6 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
-        <asp:Button ID="GoCarrello" CssClass="btn btn-warning my-3" runat="server" Text="Vai al Carrello" OnClick="GoCarrello_Click" />
+        
     </main>
 </asp:Content>
