@@ -20,6 +20,10 @@ namespace ECommerceEx
             new Prodotto { NomeProdotto = "I-Phone", Prezzo = 700, ImmagineUrl = "Content/img/iphone.jpg" },
             new Prodotto { NomeProdotto = "Game-Boy", Prezzo = 45, ImmagineUrl = "Content/img/Gameboy.jpg" },
             new Prodotto { NomeProdotto = "Quadro", Prezzo = 2000, ImmagineUrl = "Content/img/Quadro.jpg" },
+            new Prodotto { NomeProdotto = "Maglia Lazio", Prezzo = 98, ImmagineUrl = "Content/img/lazio.jpg" },
+            new Prodotto { NomeProdotto = "JoJo Fumetto", Prezzo = 20, ImmagineUrl = "Content/img/jojo.jpg" },
+            new Prodotto { NomeProdotto = "Kenshiro Fumetto", Prezzo = 30, ImmagineUrl = "Content/img/Kenshiro.jpg" },
+            new Prodotto { NomeProdotto = "Zoro Poster", Prezzo = 50, ImmagineUrl = "Content/img/zoro.jpg" }
         };
 
         protected void Page_Load(object sender, EventArgs e)

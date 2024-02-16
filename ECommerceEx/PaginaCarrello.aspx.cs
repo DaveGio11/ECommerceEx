@@ -19,8 +19,6 @@ namespace ECommerceEx
                     // Ottengo la lista dei prodotti nel carrello dalla sessione
                     List<Prodotto> prodottiNelCarrello = (List<Prodotto>)Session["Carrello"];
 
-                    // Ora puoi fare qualcosa con la lista, ad esempio visualizzarla in una griglia o in un elenco
-                    // Esempio di come si potrebbe visualizzare in una griglia GridView:
                     GridView1.DataSource = prodottiNelCarrello;
                     GridView1.DataBind();
 
@@ -40,16 +38,16 @@ namespace ECommerceEx
         {
             if (Session["Carrello"] != null && ((List<Prodotto>)Session["Carrello"]).Count > 0)
             {
-                // Calcola il prezzo totale dei prodotti nel carrello
+                // Calcolo il prezzo totale dei prodotti nel carrello
                 List<Prodotto> prodottiNelCarrello = (List<Prodotto>)Session["Carrello"];
                 decimal totalePrezzi = prodottiNelCarrello.Sum(p => p.Prezzo);
 
-                // Mostra l'alert con il messaggio "Acquisto effettuato" e il prezzo totale
+                // Mostro l'alert con il messaggio "Acquisto effettuato" e il prezzo totale se ci sono prodotti nel carrello
                 ScriptManager.RegisterStartupScript(this, GetType(), "AcquistoEffettuato", "alert('Acquisto effettuato. Totale: " + totalePrezzi.ToString("C") + "');", true);
             }
             else
             {
-                // Se il carrello è vuoto, mostra un messaggio diverso
+                // Se il carrello è vuoto, l'alert scriverà Carrello Vuoto
                 ScriptManager.RegisterStartupScript(this, GetType(), "CarrelloVuoto", "alert('Non ci sono elementi nel carrello');", true);
             }
         }
@@ -58,12 +56,12 @@ namespace ECommerceEx
 
         protected void Rimuovi_Click(object sender, EventArgs e)
         {
-            // Ottieni l'ID del pulsante "Rimuovi" che ha generato l'evento
+            // Ottiengo l'ID del pulsante "Rimuovi"
             Button btnRimuovi = (Button)sender;
             GridViewRow row = (GridViewRow)btnRimuovi.NamingContainer;
             int index = row.RowIndex;
 
-            // Ottieni il nome del prodotto da rimuovere dalla riga selezionata
+            // Ottiengo il nome del prodotto da rimuovere dalla riga selezionata
             string nomeProdottoDaRimuovere = GridView1.Rows[index].Cells[0].Text; // Assumendo che il nome del prodotto sia nella prima cella della riga
 
             // Controllo se la lista dei prodotti nel carrello è presente nella sessione
@@ -72,10 +70,10 @@ namespace ECommerceEx
                 // Ottengo la lista dei prodotti nel carrello dalla sessione
                 List<Prodotto> prodottiNelCarrello = (List<Prodotto>)Session["Carrello"];
 
-                // Rimuovi il prodotto dalla lista in base al nome
+                // Elimino il prodotto dalla lista in base al NomeProdotto
                 prodottiNelCarrello.RemoveAll(p => p.NomeProdotto == nomeProdottoDaRimuovere);
 
-                // Aggiorna la GridView e il totale dei prezzi
+                // Aggiorno la GridView e il totale dei prezzi
                 GridView1.DataSource = prodottiNelCarrello;
                 GridView1.DataBind();
 
@@ -83,8 +81,31 @@ namespace ECommerceEx
                 decimal totalePrezzi = prodottiNelCarrello.Sum(p => p.Prezzo);
                 lblTotalePrezzi.Text = $"Totale: {totalePrezzi:C}";
 
-                // Aggiorna la sessione con la lista dei prodotti nel carrello modificata
+                // Aggiorno la sessione con la lista dei prodotti nel carrello modificata
                 Session["Carrello"] = prodottiNelCarrello;
+            }
+        }
+
+        protected void SvuotaCarrello_Click(object sender, EventArgs e)
+        {
+            // Verifico se il carrello contiene già prodotti
+            if (Session["Carrello"] != null && ((List<Prodotto>)Session["Carrello"]).Count > 0)
+            {
+                // Elimino tutti i prodotti dalla lista del carrello
+                Session.Remove("Carrello");
+
+                // Aggiorno la GridView e il totale dei prezzi
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+                lblTotalePrezzi.Text = "Totale: $0.00"; // Resetta il totale dei prezzi a zero (o al valore desiderato)
+
+                // Mostro un messaggio per confermare lo svuotamento del carrello
+                ScriptManager.RegisterStartupScript(this, GetType(), "CarrelloSvuotato", "alert('Carrello svuotato');", true);
+            }
+            else
+            {
+                // Se il carrello è già vuoto, mostra un altro messaggio
+                ScriptManager.RegisterStartupScript(this, GetType(), "CarrelloGiaVuoto", "alert('Niente da eliminare, il carrello è già vuoto');", true);
             }
         }
 

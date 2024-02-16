@@ -20,7 +20,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <div class="col-md-3">
-                        <div  class="card">
+                        <div  class="card mb-4">
                             <img id="Immagine" class="card-img-top" src='<%# Eval("ImmagineUrl") %>' alt="prodotto">
                             <div class="card-body">
                                 <h5 id="NomeProdotto" class="card-title text-black"><%# Eval("NomeProdotto") %></h5>

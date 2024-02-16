@@ -122,7 +122,11 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\img\Gameboy.jpg" />
     <Content Include="Content\img\iphone.jpg" />
+    <Content Include="Content\img\jojo.jpg" />
+    <Content Include="Content\img\Kenshiro.jpg" />
+    <Content Include="Content\img\lazio.jpg" />
     <Content Include="Content\img\Quadro.jpg" />
+    <Content Include="Content\img\zoro.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
