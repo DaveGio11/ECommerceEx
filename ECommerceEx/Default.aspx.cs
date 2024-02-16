@@ -42,12 +42,12 @@ namespace ECommerceEx
             Button btnDettagli = (Button)sender;
             RepeaterItem item = (RepeaterItem)btnDettagli.NamingContainer;
 
-            // Cerco l'ID del prodotto nella card selezionata
+            // Cerco il nome del prodotto nella card selezionata
             int index = item.ItemIndex;
-            string idProdotto = Prodotti[index].NomeProdotto; // Puoi usare un ID univoco qui invece del nome se disponibile
+            string nomeProdotto = Prodotti[index].NomeProdotto;
 
-            // Creo un cookie per memorizzare l'ID del prodotto selezionato
-            HttpCookie dettagli = new HttpCookie("Dettagli", idProdotto);
+            // Creo un cookie per memorizzare il nome del prodotto selezionato
+            HttpCookie dettagli = new HttpCookie("Dettagli", nomeProdotto);
 
             // Imposto la scadenza del cookie
             dettagli.Expires = DateTime.Now.AddDays(5);

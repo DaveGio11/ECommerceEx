@@ -13,11 +13,11 @@ namespace ECommerceEx
                 // Controllo se il cookie Dettagli esiste
                 if (Request.Cookies["Dettagli"] != null)
                 {
-                    // Ottiengo l'ID del prodotto memorizzato nel cookie
-                    string idProdotto = Request.Cookies["Dettagli"].Value;
+                    // Ottengo il nome del prodotto memorizzato nel cookie
+                    string nomeProdotto = Request.Cookies["Dettagli"].Value;
 
-                    // Utilizzo l'ID per recuperare le info del prodotto desiderato
-                    Prodotto prodottoSelezionato = Prodotti.Find(p => p.NomeProdotto == idProdotto);
+                    // Utilizzo nomeProdotto per recuperare le info del prodotto desiderato
+                    Prodotto prodottoSelezionato = Prodotti.Find(p => p.NomeProdotto == nomeProdotto);
 
                     // Utilizzo le info del prodotto per riempire la pagina dei dettagli
                     if (prodottoSelezionato != null)
@@ -41,11 +41,11 @@ namespace ECommerceEx
             // Controllo se il cookie Dettagli esiste
             if (Request.Cookies["Dettagli"] != null)
             {
-                // Ottengo l'ID del prodotto memorizzato nel cookie
-                string idProdotto = Request.Cookies["Dettagli"].Value;
+                // Ottengo il nome del prodotto memorizzato nel cookie
+                string nomeProdotto = Request.Cookies["Dettagli"].Value;
 
-                // Utilizzo l'ID per recuperare le info del prodotto desiderato
-                Prodotto prodottoSelezionato = Prodotti.Find(p => p.NomeProdotto == idProdotto);
+                // Utilizzo il nome per recuperare le info del prodotto desiderato
+                Prodotto prodottoSelezionato = Prodotti.Find(p => p.NomeProdotto == nomeProdotto);
 
                 // Ottengo la lista dei prodotti nel carrello dalla sessione
                 List<Prodotto> prodottiNelCarrello;
